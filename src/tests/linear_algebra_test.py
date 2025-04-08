@@ -42,3 +42,10 @@ def test_gauss_solve_inconsistent():
     with pytest.raises(ValueError, match="Система не имеет решения"):
         Matrix.gauss_solve(A, b)
 
+def test_determinant_zero():
+    A = Matrix([[1, 1], [1, 1]])
+    assert Matrix.determinant(A) == 0
+
+def test_determinant_nonzero():
+    A = Matrix([[1, 2], [3, 4]])
+    assert Matrix.determinant(A) == -2

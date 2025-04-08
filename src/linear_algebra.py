@@ -39,7 +39,30 @@ class Matrix:
     def get_column(self, j):
         return [row[j] for row in self.data] 
        
-    
+    def determinant(matrix) -> float:
+        """Вычисляет определитель матрицы методом Гаусса"""
+        n = matrix.rows
+        det = 1.0
+        mat = [row.copy() for row in matrix.data]
+        
+        for col in range(n):
+            max_row = max(range(col, n), key=lambda r: abs(mat[r][col]))
+            if col != max_row:
+                mat[col], mat[max_row] = mat[max_row], mat[col]
+                det *= -1
+                
+            pivot = mat[col][col]
+            if abs(pivot) < 1e-12:
+                return 0.0
+                
+            det *= pivot
+            
+            for row in range(col + 1, n):
+                factor = mat[row][col] / pivot
+                for c in range(col, n):
+                    mat[row][c] -= factor * mat[col][c]
+                    
+        return det    
 
     @staticmethod
     def gauss_solve(A, b):
