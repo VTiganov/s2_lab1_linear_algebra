@@ -1,6 +1,6 @@
 from linear_algebra import Matrix
 
-from typing import List
+from typing import List, Tuple
 import math 
 
 def center_data(X: Matrix) -> Matrix:
@@ -27,9 +27,17 @@ def characteristic_polynomial(C: 'Matrix', lam: float) -> float:
 
 
 
-def find_eigenvalues(C: Matrix, tol: float = 1e-6) -> List[float]:
-    #TODO
-    pass
+def find_eigenvalues(C: Matrix, tol: float = 1e-6, max_iter: int = 100):
+    n = C.rows
+    eigenvalues = []
+
+    if n == 0 or n != C.cols:
+        return []
+
+    def f(lam):
+        return characteristic_polynomial(C, lam)
+
+    return eigenvalues
 
 def find_eigenvectors(C: 'Matrix', eigenvalues: List[float]) -> List['Matrix']:
     """
@@ -38,7 +46,7 @@ def find_eigenvectors(C: 'Matrix', eigenvalues: List[float]) -> List['Matrix']:
     eigenvalues: список собственных значений
     Выход: список собственных векторов (каждый вектор - объект Matrix)
     """
-    #TODO 
+    #TODO
     pass
 
 def explained_variance_ratio(eigenvalues: List[float], k: int) -> float:
@@ -62,57 +70,67 @@ def pca(X: 'Matrix', k: int) -> Tuple['Matrix', float]:
     """
     pass
 
-def plot_pca_projection(X_proj: 'Matrix') -> Figure:
-"""
-Вход: проекция данных X_proj (n×2)
-Выход: объект Figure из Matplotlib
-"""
-pass
+def plot_pca_projection(X_proj: 'Matrix'):
+    
+    """
+    Вход: проекция данных X_proj (n×2)
+    Выход: объект Figure из Matplotlib
+    """
+    pass
 
 def reconstruction_error(X_orig: 'Matrix', X_recon: 'Matrix') -> float:
-"""
-Вход:
-X_orig: исходные данные (n×m)
-X_recon: восстановленные данные (n×m)
-Выход: среднеквадратическая ошибка MSE
-"""
-pass
+    
+    """
+    Вход:
+    X_orig: исходные данные (n×m)
+    X_recon: восстановленные данные (n×m)
+    Выход: среднеквадратическая ошибка MSE
+    """
+    pass
 
 def auto_select_k(eigenvalues: List[float], threshold: float = 0.95) -> int:
-"""
-Вход:
-eigenvalues: список собственных значений
-threshold: порог объяснённой дисперсии
-Выход: оптимальное число главных компонент k
-"""
-pass
+    
+    """
+    Вход:
+    eigenvalues: список собственных значений
+    threshold: порог объяснённой дисперсии
+    Выход: оптимальное число главных компонент k
+    """
+    pass
 
 
 def handle_missing_values(X: 'Matrix') -> 'Matrix':
-"""
-Вход: матрица данных X (n×m) с возможными NaN
-Выход: матрица данных X_filled (n×m) без NaN
-"""
-pass
+    
+    """
+    Вход: матрица данных X (n×m) с возможными NaN
+    Выход: матрица данных X_filled (n×m) без NaN
+    """
+    pass
 
 
 def add_noise_and_compare(X: 'Matrix', noise_level: float = 0.1):
-"""
-Вход:
-X: матрица данных (n×m)
-noise_level: уровень шума (доля от стандартного отклонения)
-Выход: результаты PCA до и после добавления шума.
-В этом задании можете проявить творческие способности, поэтому выходные данные не
-типизированы.,→
-"""
-pass
+
+    """
+    Вход:
+    X: матрица данных (n×m)
+    noise_level: уровень шума (доля от стандартного отклонения)
+    Выход: результаты PCA до и после добавления шума.
+    В этом задании можете проявить творческие способности, поэтому выходные данные не
+    типизированы.,→
+    """
+    pass
 
 
 def apply_pca_to_dataset(dataset_name: str, k: int) -> Tuple['Matrix', float]:
-"""
-Вход:
-dataset_name: название датасета
-k: число главных компонент
-Выход: кортеж (проекция данных, качество модели)
-"""
-pass
+    
+    """
+    Вход:
+    dataset_name: название датасета
+    k: число главных компонент
+    Выход: кортеж (проекция данных, качество модели)
+    """
+    pass
+
+
+
+

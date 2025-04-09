@@ -80,3 +80,46 @@ def test_characteristic_polynomial_edge_case():
     # det(C - 5I) = (1-5)(4-5) - 2*2 = (-4)(-1) - 4 = 4 - 4 = 0
     # So λ=5 is also an eigenvalue (this matrix has eigenvalues 0 and 5)
     assert characteristic_polynomial(C, 5) == pytest.approx(0.0, abs=1e-6)
+
+def test_find_eigenvalues_Jordan_2x2():
+    C = Matrix([
+        [2, 1],
+        [0, 2]
+    ])
+
+    assert find_eigenvalues(C) == [2, 2]
+
+def test_find_eigenvalues_Jordan_4x4():
+    C = Matrix([
+        [1,1,0,0],
+        [0,2,0,0],
+        [0,0,2,1],
+        [0,0,0,3]
+    ])
+    assert find_eigenvalues(C) == [1, 2, 2, 3]
+
+def test_find_eigenvalues_empty():
+    C = Matrix([
+        [],
+        [],
+        [],
+        []
+    ])
+    assert find_eigenvalues(C) == []
+
+def test_find_eigenvalues_NonDiag():
+
+    C_1 = Matrix([
+    [1, 2, 3],
+    [0, 4, 5],
+    [0, 0, 6]
+])
+
+    C_2 = Matrix([
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 0]
+])
+
+    assert find_eigenvalues(C_1) == [1, 4, 6]
+    assert find_eigenvalues(C_2) == [-1, -1, 2] 
