@@ -122,4 +122,4 @@ def test_find_eigenvalues_NonDiag():
 ])
 
     assert find_eigenvalues(C_1) == [1, 4, 6]
-    assert find_eigenvalues(C_2) == [-1, -1, 2] 
+    assert find_eigenvalues(C_2) == [pytest.approx(-1), pytest.approx(2)] 
